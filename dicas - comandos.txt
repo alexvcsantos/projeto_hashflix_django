@@ -1,0 +1,11 @@
+comandos no terminal
+- rodar código - python manage.py runserver
+
+- Criar Projeto ( colocar . no final do comando pra não criar outra pasta)  --> django-admin startproject nome_projeto .
+
+- criar app ( nome do app sempre no singular, 1 app pra cada segmento do site )  --> django-admin startapp nome-app
+
+- sempre que fizer modificações na estrututa do banco rodar este comando - python manage.py makemigrations 
+                                                                e depois - python manage.py migrate
+
+- criar super user - python manege.py createsuperuser   (alex, axl.victor@gmail.com, alex6799)
