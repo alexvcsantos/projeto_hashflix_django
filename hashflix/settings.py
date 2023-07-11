@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,12 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(l$l*4u=(==y_@ojfn!%7jcv-!@kg*xvwfa!qjm*e^8im52%_#'
+TOKEN_CSRF = os.getenv('TOKEN_CSRF') # pega o token do ambiente virtual
+if TOKEN_CSRF:
+    SECRET_KEY = TOKEN_CSRF
+    #CSRF_TRUSTED_ORIGINS = ['https://projetohashiflix.com.br']
+else:
+    SECRET_KEY = 'django-insecure-(l$l*4u=(==y_@ojfn!%7jcv-!@kg*xvwfa!qjm*e^8im52%_#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"] # * todos os hosts, correto é o link do site
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"] # adicionar o link do site sem o https:// "projetohashiflix.com.br"
 
 
 # Application definition
@@ -88,7 +94,6 @@ DATABASES = {
 """
 configurações para rodar banco de dados do servidor online
 import dj_database_url
-import os
 
 DATABSE_URL = os.getenv("DATABASE_URL")
 if DATABASE_URL:
